@@ -27,6 +27,11 @@ const Navbar = () => {
     setModalContent(content);
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
   const handleDropdownClick =() =>{
     setToggleMenu(!toggleMenu);
   }
@@ -114,8 +119,15 @@ const Navbar = () => {
                  <DropDownMenu>
                    <FlexContainer direction="column" align="center">
                     <StyledText>{username}</StyledText>
-                    <Button>
-
+                    <Button
+                     width="120px"
+                     height="2rem"
+                     fontWeight="600"
+                     borderRadius="20px"
+                     backgroundColor={colors.seemoreandregister}
+                     onClick={handleLogout}
+                    >
+                      Logout
                     </Button>
                   </FlexContainer>
                  </DropDownMenu>
