@@ -79,7 +79,7 @@ const Navbar = () => {
               </Button>
             </div>
           ) : ( 
-            <FlexContainer gap="1rem">
+            <FlexContainer gap="1rem" align="center">
               <Button
                 width="120px"
                 height="2rem"
@@ -102,9 +102,9 @@ const Navbar = () => {
                 Add Story
               </Button>
               <Button
-               height="2rem"
+               height="1.5rem"
                width="2rem"
-               borderRadius="50%"
+               borderRadius="100%"
                onClick={() =>navigate('/')}
               >
                 <Image src={profile} alt="Profile image"/>
