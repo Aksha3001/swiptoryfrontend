@@ -101,14 +101,7 @@ const Navbar = () => {
               >
                 Add Story
               </Button>
-              <Button
-               height="1.5rem"
-               width="2rem"
-               borderRadius="100%"
-               onClick={() =>navigate('/')}
-              >
-                <Image src={profile} alt="Profile image"/>
-              </Button>
+                <Image height="2rem" src={profile} alt="Profile image" onClick={() =>navigate('/')} style={{borderRadius:"100%"}}/>
               <Image
                 margin="0.5rem"
                 width="fit-content"
