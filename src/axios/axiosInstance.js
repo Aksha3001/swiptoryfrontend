@@ -13,9 +13,9 @@ const axiosInstance = axios.create({
 const handleErrorResponse = (error, dispatch) => {
   if (error?.response?.status === 500 ) {
     toast.error("Something went wrong");
-    localStorage.clear();
-    dispatch(removeAuthUser());
-    window.location.href = "/";
+    // localStorage.clear();
+    // dispatch(removeAuthUser());
+    // window.location.href = "/";
   }
 
   return Promise.reject(error);

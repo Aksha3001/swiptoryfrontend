@@ -2,13 +2,13 @@ import axiosInstance from "../../axios/axiosInstance";
 import { toast } from "react-toastify";
 import { colors } from "../../assets/styled-components/global/theme";
 
-export const apiRequestHandler = async (url, method, data, withCredentials = true) => {
+export const apiRequestHandler = async (url, method, data, config) => {
   try {
     const response = await axiosInstance({
       method,
       url,
       data,
-      withCredentials 
+      ...config
     });
     return response;
   } catch (error) {

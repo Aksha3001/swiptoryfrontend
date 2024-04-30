@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FormContainer = styled.form`
     padding:1rem 0.5rem;
-    
+    text-align:left;
     @media screen and (max-width:730px){
         padding:1rem 0;
     }
@@ -12,7 +12,7 @@ export const FormContainer = styled.form`
 export const FormFieldContainer= styled.div`
     width: 100%;
     display:inline-flex;
-
+    text-align:left;
     @media screen and (max-width:730px){
         display:inline;
         text-align:left;

@@ -7,7 +7,8 @@ export const createStory = createAsyncThunk("story/add", async (values) => {
     const response = await apiRequestHandler(
       `${backendUrl}/story/create`,
       "POST",
-      values
+      values,
+      {withCredentials:true}
     );
     toast.success("Story created successfully","success");
     return response.data;
@@ -23,7 +24,8 @@ export const updateStory = createAsyncThunk("story/update", async ({ slides,
       `${backendUrl}/story/updateStory/${story._id}`,
       "PUT",
     { slides,
-      addedBy}
+      addedBy},
+      {withCredentials:true}
     );
     toast.success("Story updated successfully","success");
     return response.data;
@@ -49,7 +51,7 @@ export const getStories = createAsyncThunk(
       const response = await apiRequestHandler(
         `${backendUrl}/story/getAllStories?category=All&page=${page}&catLimit=${catLimit}&cat=${cat}`,
         "GET",
-        false
+        {withCredentials:false}
       );
       return response.data;
     } catch (error) {
@@ -62,7 +64,7 @@ export const getStory = createAsyncThunk(
     "getStory",
     async ({ storyId, userId }) => {
       try {
-        if (userId === null) {
+        if (userId === null || userId === undefined) {
             const response = await apiRequestHandler(
                 `${backendUrl}/story/getStoryById/${storyId}`,
                 "GET",
@@ -72,9 +74,9 @@ export const getStory = createAsyncThunk(
         }
         else {
         const response = await apiRequestHandler(
-          `${backendUrl}/story/getById/${storyId}?userId=${userId}`,
+          `${backendUrl}/story/getStoryById/${storyId}?userId=${userId}`,
           "GET",
-          true
+          {withCredentials:true}
         );
         return response.data;
     }

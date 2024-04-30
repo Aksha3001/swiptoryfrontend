@@ -46,6 +46,7 @@ export const StyledText = styled.span`
   font-size: ${(props) => props.fontSize || "inherit"};
   font-weight: ${(props) => props.fontWeight || "normal"};
   padding: ${(props) => props.padding || "0"};
+
   ${(props) =>
     props.color &&
     css`

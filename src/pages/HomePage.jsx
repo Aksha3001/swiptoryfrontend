@@ -5,8 +5,9 @@ import Categories from '../components/Categories';
 import { Image } from '../assets/styled-components/global/style';
 import loading from '../assets/images/loading.gif';
 import { useDispatch, useSelector } from 'react-redux';
-// import { getStories, getStoriesByCategory, getStoriesByUser } from '../store/slices/storySlice';
+import { getStories, getStoriesByCategory, getStoriesByUser } from '../store/slices/storySlice';
 import { categories } from '../constants';
+import Stories from '../components/Stories';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -15,26 +16,26 @@ const HomePage = () => {
    const [category, setCategory] = useState("All");
   const { storiesLoading , categoryLoading, newStory, userStoriesPage, newLike} = useSelector((state) => state.story);
   
-  //  useEffect(() => {
-  //   if(category!=='All'){
-  //     dispatch(getStoriesByCategory(category, 1));
-  //   }
-  //   else{
-  //     dispatch(getStories(1));
-  //   }  }, []);
+   useEffect(() => {
+    if(category!=='All'){
+      dispatch(getStoriesByCategory(category, 1));
+    }
+    else{
+      dispatch(getStories(1));
+    }  }, []);
 
-    // useEffect(() => {
-    //   if (newStory) {
-    //     dispatch(getStories(1));  
-    //     dispatch(getStoriesByUser(userId, userStoriesPage));
-    //   }
-    // }, [newStory]);
+    useEffect(() => {
+      if (newStory) {
+        dispatch(getStories(1));  
+        dispatch(getStoriesByUser(userId, userStoriesPage));
+      }
+    }, [newStory]);
     
-    // useEffect(() => {
-    //   if(newLike){
-    //     dispatch(endRequest())
-    //   }
-    // }, [newLike]);
+    useEffect(() => {
+      if(newLike){
+        dispatch(endRequest())
+      }
+    }, [newLike]);
   
   const handleCategoryClick = (category) => {
     setCategory(category);
@@ -63,7 +64,7 @@ const HomePage = () => {
               handleCategoryClick={handleCategoryClick}
               selectedCategory={category}
       />
-      { /*{!storiesLoading && <Stories category={category} />} */}
+      {!storiesLoading && <Stories category={category} />} 
       {storiesLoading && categoryLoading && <Image height="200px" width="200px" src={loading} alt="Loading"/>}
     </HomePageContainer>
     </StyleSheetManager>

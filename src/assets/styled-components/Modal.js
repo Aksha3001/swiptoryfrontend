@@ -16,7 +16,7 @@ export const ModalLayoutContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  width: 35%;
+  min-width:40%;
   padding: 2rem;
   border: 1px solid #ccc;
   border-radius: 5px;

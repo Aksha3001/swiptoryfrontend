@@ -13,12 +13,14 @@ import hamburger from "../assets/icons/hamburger.png";
 import bookmark from "../assets/icons/bookmark.png";
 import profile from "../assets/images/profile.png";
 import { StyleSheetManager } from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { removeAuthUser } from "../store/slices/authSlice";
+import StoryForm from "./StoryForm";
 
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const [modalContent, setModalContent] = useState(null);
   const [toggleMenu, setToggleMenu] = useState(false);
   const { isAuthenticated, username } = useSelector((state) => state.auth);
@@ -28,7 +30,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(removeAuthUser());
     navigate("/");
   };
 
@@ -51,6 +53,7 @@ const Navbar = () => {
           "justify",
           "padding",
           "align",
+          "border"
         ].includes(prop)
       }
     >
@@ -88,13 +91,15 @@ const Navbar = () => {
               <Button
                 width="120px"
                 height="2rem"
-                fontWeight="600"
+
                 borderRadius="20px"
                 backgroundColor={colors.seemoreandregister}
                 onClick={() => navigate("/bookmarks")}
               >
-                <Image src={bookmark} alt="Bookmark Icon" />
-                Bookmarks
+              <FlexContainer justify="center" align="center">
+              <Image height="16px" src={bookmark} alt="Bookmark Icon" margin="0 0.2rem" />
+              <StyledText fontWeight="600">Bookmarks</StyledText>
+              </FlexContainer>
               </Button>
               <Button
                width="120px"

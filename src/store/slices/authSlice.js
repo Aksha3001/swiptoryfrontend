@@ -35,9 +35,10 @@ export const login = createAsyncThunk("authLogin", async (credentials) => {
   }
 });
 
-export const getUser = createAsyncThunk("getUser", async (username) => {
+export const getUser = createAsyncThunk("getUser", async () => {
+  const username = localStorage.getItem("username");
   try {
-    const response = await axios.get(`${backendUrl}/user/getUser/${username}`,
+    const response = await apiRequestHandler(`${backendUrl}/user/getUser/${username}`,'GET',
       {withCredentials:true}
     );
     return response.data;
@@ -50,8 +51,8 @@ export const removeAuthUser = createAsyncThunk(
   "authLogout",
   async (_, { dispatch }) => {
     try {
-      await axios.post("/api/user/logout");
       window.localStorage.clear();
+      await axios.post("/api/user/logout");
       dispatch({ type: "RESET_STATE" });
     } catch (error) {
       toastHandler(error?.response?.data?.message,"error");
@@ -80,6 +81,7 @@ const authUserSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = true;
         state.username = action.payload.username;
+        localStorage.setItem("username",action.payload.username);
         state.token = action.payload.token;
         state.userId = action.payload.userId;
         state.user = action.payload.user;
@@ -99,6 +101,7 @@ const authUserSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = true;
         state.username = action.payload.username;
+        localStorage.setItem("username",action.payload.username);
         state.token = action.payload.token;
         state.userId = action.payload.userId;
         state.user = action.payload.user;
