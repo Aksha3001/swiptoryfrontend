@@ -8,6 +8,11 @@ export const StyledNavbar = styled.nav`
   top: 0;
   left: 0;
   z-index: 1;
+
+  @media screen and (max-width:768px){
+    width:100vw;
+  }
+  
 `;
 
 export const DropDownMenu = styled.div`

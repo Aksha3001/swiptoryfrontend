@@ -56,7 +56,7 @@ const Stories = ({ category }) => {
 
   const renderStories = (storyArray, isLoading, pageFunction) => (
     <div style={{marginTop:"1rem"}}>
-      <StoriesContainer ismobile={isMobile.toString()}>
+      <StoriesContainer ismobile={isMobile}>
         {storyArray &&
           storyArray.map((story) =>
             isLoading ? (
