@@ -37,7 +37,7 @@ const StoryModal = () => {
     if (!isAuthenticated) {
       navigate("/");
     } else {
-      dispatch(likeStory({storyId:id, userId}));
+      dispatch(likeStory({id, userId}));
     }
   };
 
@@ -45,7 +45,7 @@ const StoryModal = () => {
     if (!isAuthenticated) {
       navigate("/");
     } else {
-      dispatch(bookmarkStory({storyId:id, userId}));
+      dispatch(bookmarkStory({id, userId}));
     }
   };
 

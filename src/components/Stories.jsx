@@ -118,7 +118,7 @@ const Stories = ({ category }) => {
       )}
 
       {category !== "All" && (
-        <div style={{textAlign:"center"}}>
+        <div style={{textAlign:"center", marginTop:isMobile&&"4rem"}}>
           <StyledText fontSize="22px" fontWeight="600">
             Top Stories About {category}
           </StyledText>

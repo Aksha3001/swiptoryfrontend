@@ -17,7 +17,8 @@ import NavbarMobileView from "./components/NavbarMobileView";
 function App() {
   const dispatch = useDispatch();
   const isMobile = useWindowSize();
-  const {username, loading} = useSelector((state) => state.auth);
+  const { loading} = useSelector((state) => state.auth);
+  const username = localStorage.getItem('username');
 
   useEffect(() => {
     if(username){
