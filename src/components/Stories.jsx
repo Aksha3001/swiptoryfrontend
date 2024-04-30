@@ -97,7 +97,7 @@ const Stories = ({ category }) => {
             {Object.keys(stories).map(
               (key) =>
                 stories[key].length > 0 && (
-                  <FlexContainer key={key} justify="center">
+                  <FlexContainer key={key} direction="column" justify="center" align="center">
                     <StyledText fontSize="22px" fontWeight="600">
                       Top Stories About {key}
                     </StyledText>
@@ -117,7 +117,7 @@ const Stories = ({ category }) => {
       )}
 
       {category !== "All" && (
-        <FlexContainer justify="center">
+        <FlexContainer direction="column" justify="center" align="center">
           <StyledText fontSize="22px" fontWeight="600">
             Top Stories About {category}
           </StyledText>
