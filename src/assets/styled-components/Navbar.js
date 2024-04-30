@@ -23,7 +23,7 @@ export const DropDownMenu = styled.div`
   padding: 2rem;
   background-color: white;
   box-shadow: 0px 4px 4px 0px #00000040;
-  z-index: 5;
+  z-index: 2;
 
   @media screen and (max-width:768px){
     width: 100%;
