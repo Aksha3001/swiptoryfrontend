@@ -74,7 +74,7 @@ const NavbarMobileView = () => {
               {toggleMenu && (
                 <DropDownMenu>
                   <FlexContainer justify="end">
-                    <Image src={close} alt="Close Icon" margin="1rem" />
+                    <Image src={close} alt="Close Icon" margin="1rem" onClick={handleDropdownClick}/>
                   </FlexContainer>
                   <FlexContainer direction="column" align="center" gap="2rem">
                     <Button
@@ -114,7 +114,7 @@ const NavbarMobileView = () => {
               {toggleMenu && (
                 <DropDownMenu>
                   <FlexContainer justify="end">
-                    <Image src={close} alt="Close Icon" margin="1rem" />
+                    <Image src={close} alt="Close Icon" margin="1rem" onClick={handleDropdownClick}/>
                   </FlexContainer>
                   <FlexContainer direction="column" align="center">
                     <div>
