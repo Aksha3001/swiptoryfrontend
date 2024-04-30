@@ -6,7 +6,7 @@ import {
   getStoriesByCategory,
   getStoriesByUser,
 } from "../store/slices/storySlice";
-import { Button, StyledText } from "../assets/styled-components/global/style";
+import { Button, FlexContainer, StyledText } from "../assets/styled-components/global/style";
 import { Container, StoriesContainer } from "../assets/styled-components/StoriesContainer";
 import StoryCard from "./StoryCard";
 import { colors } from "../assets/styled-components/global/theme";
@@ -38,7 +38,7 @@ const Stories = ({ category }) => {
       dispatch(getStories(page));
     }
     if (!stories && category !== "All") {
-      dispatch(getStoriesByCategory(page));
+      dispatch(getStoriesByCategory({category,page}));
     }
   }, []);
 
@@ -97,7 +97,7 @@ const Stories = ({ category }) => {
             {Object.keys(stories).map(
               (key) =>
                 stories[key].length > 0 && (
-                  <div key={key}>
+                  <FlexContainer key={key} justify="center">
                     <StyledText fontSize="22px" fontWeight="600">
                       Top Stories About {key}
                     </StyledText>
@@ -109,7 +109,7 @@ const Stories = ({ category }) => {
                         }
                       })
                     )}
-                  </div>
+                  </FlexContainer>
                 )
             )}
           </>
@@ -117,7 +117,7 @@ const Stories = ({ category }) => {
       )}
 
       {category !== "All" && (
-        <div>
+        <FlexContainer justify="center">
           <StyledText fontSize="22px" fontWeight="600">
             Top Stories About {category}
           </StyledText>
@@ -127,7 +127,7 @@ const Stories = ({ category }) => {
           {categoryStories.length <= 0 && (
             <StyledText fontSize="18px" fontWeight="500">No stories found!</StyledText>
           )}
-        </div>
+        </FlexContainer>
       )}
     </Container>
   );
