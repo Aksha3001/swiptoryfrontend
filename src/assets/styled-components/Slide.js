@@ -8,4 +8,6 @@ export const SlideText = styled.div`
   position: absolute;
   bottom: 5rem;
   left: 0%;
-`;
+  text-align:left;
+  padding: 0 1rem;
+  `;

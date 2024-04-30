@@ -27,6 +27,11 @@ export const ModalLayoutContainer = styled.div`
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.26);
   background-color: white;
   z-index: 5;
+  @media screen and (max-width:768px){
+    min-width:45%;
+    padding: 1rem;
+  
+  }
 
 `;
 

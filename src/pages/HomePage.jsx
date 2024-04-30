@@ -18,11 +18,11 @@ const HomePage = () => {
   
    useEffect(() => {
     if(category!=='All'){
-      dispatch(getStoriesByCategory(category, 1));
+      dispatch(getStoriesByCategory({category,page:1}));
     }
     else{
       dispatch(getStories(1));
-    }  }, []);
+    }  }, [category]);
 
     useEffect(() => {
       if (newStory) {

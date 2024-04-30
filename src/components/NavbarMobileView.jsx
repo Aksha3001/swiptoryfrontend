@@ -113,11 +113,11 @@ const NavbarMobileView = () => {
               />
               {toggleMenu && (
                 <DropDownMenu>
-                  <FlexContainer justify="end">
-                    <Image src={close} alt="Close Icon" margin="1rem" onClick={handleDropdownClick}/>
+                  <FlexContainer justify="end" >
+                    <Image src={close} alt="Close Icon" margin="0.5rem" onClick={handleDropdownClick}/>
                   </FlexContainer>
-                  <FlexContainer direction="column" align="center">
-                    <div>
+                  <FlexContainer direction="column" align="center" gap="0.5rem">
+                    <div style={{display:"flex", alignItems:"center"}}>
                       <Image
                         height="2rem"
                         src={profile}
@@ -125,7 +125,7 @@ const NavbarMobileView = () => {
                         onClick={() => navigate("/")}
                         style={{ borderRadius: "100%" }}
                       />
-                      <StyledText>{username}</StyledText>
+                      <StyledText>&nbsp; {username}</StyledText>
                     </div>
                     <Button
                       width="120px"

@@ -19,7 +19,7 @@ color: white;
 position: relative;
 top: 74%;
 padding: 1rem;
-
+text-align:left;
 `;
 
 export const StoryEditContainer = styled.div`

@@ -10,7 +10,7 @@ export const StoryModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   color: #ffff;
-    z-index: 2;
+  z-index: 2;
 `;
 
 export const ViewStory = styled.div`
@@ -33,7 +33,7 @@ export const StoryButtons = styled.div`
   width: 100%;
   position: absolute;
   top: 2.2rem;
-  padding:0.5rem;
+  padding: 0.5rem;
   background: linear-gradient(180deg, #000000, transparent);
 `;
 
@@ -41,6 +41,7 @@ export const BottomStoryButtons = styled.div`
   width: 100%;
   position: absolute;
   bottom: 0rem;
-  padding:0.5rem;
+  padding: 0.5rem;
+  height: 10%;
   background: linear-gradient(360deg, #000000, transparent);
 `;

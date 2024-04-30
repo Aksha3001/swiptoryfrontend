@@ -102,8 +102,9 @@ export const InputField = styled.input`
 
     @media screen and (max-width:768px){
       width:100%;
-      height:20px;
+      height:30px;
       margin-left:0;
+      padding:0rem;
     }
 `;
 

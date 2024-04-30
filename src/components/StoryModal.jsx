@@ -9,7 +9,7 @@ import Loader from "./Loader";
 import { getStory } from "../store/slices/storySlice";
 import { likeStory } from "../store/slices/likeSlice";
 import { bookmarkStory } from "../store/slices/bookmarkSlice";
-import { getUser } from "../store/slices/authSlice";
+import { toast } from "react-toastify";
 
 const StoryModal = () => {
   const dispatch = useDispatch();
@@ -54,12 +54,11 @@ const StoryModal = () => {
     window.navigator.clipboard
       .writeText(url)
       .then(() => {
-        toast.success("Copied to clipboard successfully!", {
-          position: "top-center",
-        });
+        toast.success("Copied to clipboard successfully!");
       })
       .catch((error) => {
-        toast.error("Failed to copy to clipboard:", { position: "top-center" });
+        alert(error);
+        toast.error("Failed to copy to clipboard:");
       });
   };
 
@@ -69,6 +68,7 @@ const StoryModal = () => {
 
   return (
     <StoryModalContainer>
+      {/* <ToastContainer/> */}
       <ViewStory>
         <StoryButtons>
           <InlineFlex>            

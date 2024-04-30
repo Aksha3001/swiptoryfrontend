@@ -17,8 +17,8 @@ const Slide = ({ slides, imgIndex }) => {
           alt={`Slide ${index}`}
         />
       <SlideText style={{ display: index === imgIndex ? "block" : "none" }} >
-          <StyledText fontSize="18px">{slide?.heading}</StyledText>
-          <StyledText>{slide?.description}</StyledText>
+          <StyledText fontSize="18px" fontWeight="600">{slide?.heading}</StyledText><br/>
+          <StyledText fontWeight="600">{slide?.description}</StyledText>
         </SlideText>
         </div>
       ))}

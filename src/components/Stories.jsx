@@ -10,6 +10,7 @@ import { Button, StyledText } from "../assets/styled-components/global/style";
 import { Container, StoriesContainer } from "../assets/styled-components/StoriesContainer";
 import StoryCard from "./StoryCard";
 import { colors } from "../assets/styled-components/global/theme";
+import Loader from "./Loader";
 
 const Stories = ({ category }) => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Stories = ({ category }) => {
     if (!stories && category !== "All") {
       dispatch(getStoriesByCategory({category,page}));
     }
-  }, []);
+  }, [category]);
 
   useEffect(() => {
     if (newStory) {

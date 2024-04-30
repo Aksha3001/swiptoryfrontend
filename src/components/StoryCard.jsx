@@ -35,7 +35,7 @@ const StoryCard = ({story}) => {
               {story.slides[0].heading &&
                 story.slides[0].heading.substring(0, 20)}
               {story.slides[0].heading.length > 30 && "..."}
-            </StyledText>
+            </StyledText><br/>
             <StyledText>
               {story.slides[0].description.substring(0, 30)}
               {story.slides[0].description.length > 30 && "..."}
