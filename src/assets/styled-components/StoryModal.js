@@ -10,6 +10,7 @@ export const StoryModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   color: #ffff;
+    z-index: 2;
 `;
 
 export const ViewStory = styled.div`
