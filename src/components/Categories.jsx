@@ -12,7 +12,6 @@ import { CategoryContainer } from "../assets/styled-components/CategoryContainer
 const Categories = ({ handleCategoryClick, categories, selectedCategory }) => {
     const isMobile = useWindowSize();
     return (
-        // style={{overflowX:isMobile?'scroll':'hidden',position:'fixed'}}
       <CategoryContainer>
       <FlexContainer gap="1.5rem" margin="1rem">
         <Button

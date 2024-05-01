@@ -10,6 +10,11 @@ export const SlideBox = styled.div`
   text-align: center;
   box-shadow: 0px 4px 15px 0px #0000001a;
   cursor: pointer;
+
+  @media screen and (max-width:768px){
+    width:40px;
+    height:2rem;
+  }
 `;
 
 export const ButtonsContainer = styled.div`

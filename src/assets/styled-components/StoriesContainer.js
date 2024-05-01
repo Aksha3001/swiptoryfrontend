@@ -9,4 +9,5 @@ export const StoriesContainer = styled.div`
   grid-template-columns: ${(props) => (props.ismobile ? '1fr' : '1fr 1fr 1fr 1fr')};
   place-items: center;
   margin:0.2rem;
+
 `;

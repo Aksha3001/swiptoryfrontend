@@ -14,7 +14,6 @@ const DisplayStory = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log({userId});
     if(userId){
       dispatch(getStoriesByUser({userId}));
     }

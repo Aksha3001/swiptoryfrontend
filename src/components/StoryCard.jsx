@@ -1,34 +1,58 @@
-import React, { useContext } from 'react'
-import { StoryCardContainer, StoryContainer, StoryDescription, StoryEditContainer } from '../assets/styled-components/StoryContainer';
-import { StyledText } from '../assets/styled-components/global/style';
+import React, { useContext, useEffect, useState } from "react";
+import {
+  StoryCardContainer,
+  StoryContainer,
+  StoryDescription,
+  StoryEditContainer,
+} from "../assets/styled-components/StoryContainer";
+import { StyledText } from "../assets/styled-components/global/style";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { getStory } from '../store/slices/storySlice';
-import EditStoryForm from './EditStoryForm';
-import ModalLayout from './ModalLayout';
-import { ModalContext } from '../modalcontext/ModalProvider';
+import { useDispatch, useSelector } from "react-redux";
+import { getStory } from "../store/slices/storySlice";
+import ModalLayout from "./ModalLayout";
+import { ModalContext } from "../modalcontext/ModalProvider";
+import useWindowSize from "./useWindowResize";
 
-const StoryCard = ({story}) => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const {openModal,closeModal,modalContent} = useContext(ModalContext);
-    const { isAuthenticated, userId } = useSelector((state) => state.auth);
-  
-    const handleOpen = () => {
-      navigate(`/story/${story._id}`);
-    };
-  
-    const handleEditStory = (e) => {
+const StoryCard = ({ story }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isMobile = useWindowSize();
+  const { openModal, closeModal, modalContent } = useContext(ModalContext);
+  const { isAuthenticated, userId } = useSelector((state) => state.auth);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Handle opening story details
+  const handleOpen = () => {
+    navigate(`/story/${story._id}`);
+  };
+
+  // Handle editing the story
+  const handleEditStory = (e) => {
+    e.preventDefault();
+    openModal("editstory");
+    dispatch(getStory({ storyId: story._id, userId }));
+  };
+
+  // Effect to manage modal state and body overflow
+  useEffect(() => {
+    if (!isMobile && !modalContent) {
       window.scrollTo(0, 0);
-      e.preventDefault();
-      openModal("editstory");
-      dispatch(getStory({storyId:story._id, userId}));    
-    };
-  
+    }
+
+    if (modalContent) {
+      setIsModalOpen(true);
+      document.body.style.overflow = "hidden";
+    } else {
+      setIsModalOpen(false);
+      document.body.style.overflow = "auto";
+    }
+  }, [isMobile, modalContent]);
+
+  // Render the story card component
   const storyImg = story.slides[0]?.imageUrl;
   return (
     <>
-    <StoryCardContainer>
+      <StoryCardContainer>
         <StoryContainer
           style={{
             backgroundImage: `linear-gradient(#00000099, #00000099), url(${storyImg})`,
@@ -40,7 +64,8 @@ const StoryCard = ({story}) => {
               {story.slides[0].heading &&
                 story.slides[0].heading.substring(0, 20)}
               {story.slides[0].heading.length > 30 && "..."}
-            </StyledText><br/>
+            </StyledText>
+            <br />
             <StyledText>
               {story.slides[0].description.substring(0, 30)}
               {story.slides[0].description.length > 30 && "..."}
@@ -48,6 +73,7 @@ const StoryCard = ({story}) => {
           </StoryDescription>
         </StoryContainer>
 
+        {/* Render edit button if user is authenticated and owns the story */}
         {isAuthenticated && userId && story.addedBy === userId && (
           <StoryEditContainer
             onClick={handleEditStory}
@@ -78,11 +104,16 @@ const StoryCard = ({story}) => {
           </StoryEditContainer>
         )}
       </StoryCardContainer>
-      {modalContent && (
-          <ModalLayout closeModal={closeModal} modalContent={modalContent}/>
-        )}
-    </>
-  )
-}
 
-export default StoryCard
+      {/* Render modal layout based on mobile status and modal state */}
+      {!isMobile && isModalOpen && (
+        <ModalLayout closeModal={closeModal} modalContent={modalContent} />
+      )}
+      {isMobile && modalContent && (
+        <ModalLayout closeModal={closeModal} modalContent={modalContent} />
+      )}
+    </>
+  );
+};
+
+export default StoryCard;

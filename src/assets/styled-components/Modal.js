@@ -8,6 +8,7 @@ export const Modal = styled.div`
   top: 0;
   left: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+
   @media screen and (max-width:768px){
     height:100vh;
   }
@@ -31,7 +32,7 @@ export const ModalLayoutContainer = styled.div`
   background-color: white;
   z-index: 5;
   @media screen and (max-width: 768px) {
-    min-width: 45%;
+    min-width: 40%;
     padding: 1rem;
   }
 `;

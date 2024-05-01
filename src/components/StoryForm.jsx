@@ -14,7 +14,7 @@ import SlidesformFields from "./SlidesformFields";
 const StoryForm = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { isMobile } = useWindowSize();
+  const isMobile = useWindowSize();
 
   const initialSlide = {
     heading: "",
@@ -140,13 +140,15 @@ const StoryForm = () => {
 
   return (
     <div>
+      {console.log({isMobile})}
       <FlexContainer
-        direction="column"
+        direction={isMobile ?"row":"column"}
         align="center"
         gap="1rem"
         padding="1rem"
       >
-        <FlexContainer justify="center" align="center" gap="1rem">
+        <FlexContainer direction={isMobile?"column":"row"} justify="center" align="center" gap="1rem">
+
           {slides.map((slide, index) => (
             <SlideBox
               key={index}
