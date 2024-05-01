@@ -15,6 +15,11 @@ export const StoryModalContainer = styled.div`
   z-index: 5;
   background-color: linear-gradient(#00000099, #00000099);
   box-shadow: 0 4px 30px 0 #ffffff40;
+
+  @media screen and (max-width: 768px) {
+    width: 70%;
+    padding: 0.5rem;
+  }
 `;
 
 export const StoryModalContentContainer = styled.div`

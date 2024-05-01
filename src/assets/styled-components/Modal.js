@@ -32,7 +32,7 @@ export const ModalLayoutContainer = styled.div`
   background-color: white;
   z-index: 5;
   @media screen and (max-width: 768px) {
-    min-width: 40%;
+    min-width: 80%;
     padding: 1rem;
   }
 `;
@@ -41,4 +41,5 @@ export const ModalContentContainer = styled.div`
   width: 80%;
   height: 100%;
   text-align: center;
+  z-index: 6;
 `;

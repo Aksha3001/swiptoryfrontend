@@ -6,7 +6,10 @@ import {
   FlexContainer,
   StyledText,
 } from "../assets/styled-components/global/style";
-import { ButtonsContainer, SlideBox } from "../assets/styled-components/StoryForm";
+import {
+  ButtonsContainer,
+  SlideBox,
+} from "../assets/styled-components/StoryForm";
 import { createStory } from "../store/slices/storySlice";
 import { colors } from "../assets/styled-components/global/theme";
 import SlidesformFields from "./SlidesformFields";
@@ -15,7 +18,7 @@ const StoryForm = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const isMobile = useWindowSize();
-
+  console.log(isMobile);
   const initialSlide = {
     heading: "",
     description: "",
@@ -139,16 +142,20 @@ const StoryForm = () => {
   };
 
   return (
-    <div>
-      {console.log({isMobile})}
+    <FlexContainer direction={isMobile && "column"}>
       <FlexContainer
-        direction={isMobile ?"row":"column"}
+        direction={isMobile ? "row" : "column"}
         align="center"
         gap="1rem"
-        padding="1rem"
+        padding={isMobile ? "0 1.5rem 0 0" : "1rem"}
       >
-        <FlexContainer direction={isMobile?"column":"row"} justify="center" align="center" gap="1rem">
-
+        <FlexContainer
+          direction={isMobile ? "column" : "row"}
+          justify="center"
+          align="center"
+          gap="1rem"
+        >
+          {console.log(isMobile)}
           {slides.map((slide, index) => (
             <SlideBox
               key={index}
@@ -163,70 +170,118 @@ const StoryForm = () => {
           <SlideBox onClick={handleAddSlide}>Add +</SlideBox>
         </FlexContainer>
         <div>
-        {slides.map((slide, slideIndex) => (
-          <>
-            {slideIndex === currentSlide && (
-    
+          {slides.map((slide, slideIndex) => (
+            <>
+              {slideIndex === currentSlide && (
                 <SlidesformFields
-                key={slideIndex}
-                slide={slide}
-                slideIndex={slideIndex}
-                handleChange={(e) => handleChange(e, slideIndex)}
-                handleRemoveSlide={() => handleRemoveSlide(slideIndex)}
+                  key={slideIndex}
+                  slide={slide}
+                  slideIndex={slideIndex}
+                  handleChange={(e) => handleChange(e, slideIndex)}
+                  handleRemoveSlide={() => handleRemoveSlide(slideIndex)}
                 />
-            )}
+              )}
             </>
-            ))}
+          ))}
         </div>
         <StyledText color="red">{error}</StyledText>
-       <ButtonsContainer>
-        <FlexContainer justify="space-between" align="center">
-          <FlexContainer gap="1rem">
-            <Button
-              width="100px"
-              height="2rem"
-              borderRadius="10px"
-              backgroundColor={colors.previous}
-              onClick={handlePrevClick}
-            >
-              Previous
-            </Button>
-            <Button
-              width="100px"
-              height="2rem"
-              borderRadius="10px"
-              backgroundColor={colors.next}
-              onClick={handleNextClick}
-            >
-              Next
-            </Button>
-            {slides.length > 3 && (
+        {!isMobile && (
+          <ButtonsContainer>
+            <FlexContainer justify="space-between" align="center">
+              <FlexContainer gap="1rem">
+                <Button
+                  width="100px"
+                  height="2rem"
+                  borderRadius="10px"
+                  backgroundColor={colors.previous}
+                  onClick={handlePrevClick}
+                >
+                  Previous
+                </Button>
+                <Button
+                  width="100px"
+                  height="2rem"
+                  borderRadius="10px"
+                  backgroundColor={colors.next}
+                  onClick={handleNextClick}
+                >
+                  Next
+                </Button>
+                {slides.length > 3 && (
+                  <Button
+                    width="100px"
+                    height="2rem"
+                    borderRadius="10px"
+                    backgroundColor={colors.remove}
+                    onClick={() => handleRemoveSlide(currentSlide)}
+                  >
+                    Remove
+                  </Button>
+                )}
+              </FlexContainer>
               <Button
-              width="100px"
+                width="100px"
                 height="2rem"
                 borderRadius="10px"
-                backgroundColor={colors.remove}
-                onClick={() => handleRemoveSlide(currentSlide)}
+                backgroundColor={colors.seemoreandregister}
+                onClick={handleSubmit}
               >
-                Remove
+                Post
               </Button>
-            )}
-          </FlexContainer>
-          <Button
-                width="100px"
-            height="2rem"
-            borderRadius="10px"
-            backgroundColor={colors.seemoreandregister}
-            onClick={handleSubmit}
-          >
-            Post
-          </Button>
-        </FlexContainer>
-       </ButtonsContainer>
+            </FlexContainer>
+          </ButtonsContainer>
+        )}
       </FlexContainer>
-    </div>
+      { isMobile && <ButtonsContainer>
+            <FlexContainer  justify="space-between" align="center">
+              <FlexContainer gap="0.5rem">
+                <Button
+                width="60px"
+                height="2rem"
+                borderRadius="10px"
+                mobileFontSize="14px"
+                  backgroundColor={colors.previous}
+                  onClick={handlePrevClick}
+                >
+                  Previous
+                </Button>
+                <Button
+                width="60px"
+                height="2rem"
+                borderRadius="10px"
+                mobileFontSize="14px"
+                  backgroundColor={colors.next}
+                  onClick={handleNextClick}
+                >
+                  Next
+                </Button>
+                {slides.length > 3 && (
+                  <Button
+                  width="60px"
+                  height="2rem"
+                  borderRadius="10px"
+                  mobileFontSize="14px"
+                    backgroundColor={colors.remove}
+                    onClick={() => handleRemoveSlide(currentSlide)}
+                  >
+                    Remove
+                  </Button>
+                )}
+              </FlexContainer>
+              <Button
+                width="60px"
+                height="2rem"
+                borderRadius="10px"
+                mobileFontSize="14px"
+                backgroundColor={colors.seemoreandregister}
+                onClick={handleSubmit}
+              >
+                Post
+              </Button>
+            </FlexContainer>
+          </ButtonsContainer>}
+    </FlexContainer>
   );
 };
 
 export default StoryForm;
-

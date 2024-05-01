@@ -10,6 +10,12 @@ export const GridLayout = styled.div`
   gap: 1rem; /* Adjust the gap between grid items */
   margin: 0.2rem;
   align-items: center;
+
+  @media screen and (max-width:768px){
+    grid-template-columns: 160px ;
+    text-align:left;
+    gap:0;
+  }
 `;
 
 export const TextAreaField = styled.textarea`
@@ -18,6 +24,11 @@ export const TextAreaField = styled.textarea`
   border: 1px solid black;
   margin: 0 1.6rem;
   padding: 0.5rem;
+  @media screen and (max-width:768px){
+    margin:0;
+    width: 100%;
+    padding: 0.5rem 0 0 0;
+  }
 `;
 
 export const SelectField = styled.select`
@@ -35,5 +46,16 @@ export const SelectField = styled.select`
 
   &::placeholder {
     color: black; /* Placeholder color */
+  }
+
+  @media screen and (max-width:768px){
+    width:160px;
+    height:30px;
+    margin:0;
+    font-size:14px;
+    
+    option{
+      font-size:14px;
+    }
   }
 `;

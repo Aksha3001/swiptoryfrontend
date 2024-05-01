@@ -12,12 +12,14 @@ export const SlideBox = styled.div`
   cursor: pointer;
 
   @media screen and (max-width:768px){
-    width:40px;
+    width:70px;
+    border-radius:2rem;
+    align-content: center;
     height:2rem;
   }
 `;
 
 export const ButtonsContainer = styled.div`
   width:100%;
-
+  
 `;

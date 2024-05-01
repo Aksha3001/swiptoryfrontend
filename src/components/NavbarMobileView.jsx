@@ -143,7 +143,7 @@ const NavbarMobileView = () => {
                       fontWeight="600"
                       borderRadius="20px"
                       backgroundColor={colors.seemoreandregister}
-                      onClick={() => handleOpenModal("storyForm")}
+                      onClick={() => handleOpenModal("storyform")}
                     >
                       Add Story
                     </Button>

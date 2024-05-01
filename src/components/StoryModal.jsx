@@ -21,6 +21,7 @@ import { getStory } from "../store/slices/storySlice";
 import { likeStory } from "../store/slices/likeSlice";
 import { bookmarkStory } from "../store/slices/bookmarkSlice";
 import { toast } from "react-toastify";
+import { StyleSheetManager } from "styled-components";
 
 const StoryModal = () => {
   const dispatch = useDispatch();
@@ -79,6 +80,23 @@ const StoryModal = () => {
   }
 
   return (
+    <StyleSheetManager
+    shouldForwardProp={(prop) =>
+    ![
+      "fontSize",
+      "fontWeight",
+      "color",
+      "mobileFontSize",
+      "mobileWidth",
+      "mobileHeight",
+      "backgroundColor",
+      "borderRadius",
+      "justify",
+      "padding",
+      "align",
+    ].includes(prop)}
+    >
+
     <StoryModalContainer>
       {/* <ToastContainer/> */}
       <ViewStory>
@@ -149,6 +167,8 @@ const StoryModal = () => {
         </BottomStoryButtons>
       </ViewStory>
     </StoryModalContainer>
+    </StyleSheetManager>
+
   );
 };
 
