@@ -3,9 +3,7 @@ import Bookmark from '../components/Bookmark'
 
 const BookmarkPage = () => {
   return (
-    <div>
       <Bookmark/>
-    </div>
   )
 }
 

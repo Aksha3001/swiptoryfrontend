@@ -8,9 +8,10 @@ export const getBookmarks = createAsyncThunk(
     try {
       const response = await apiRequestHandler(
         `${backendUrl}/user/bookmarks/${userId}`,
-        "GET"
+        "GET",
+        {withCredentials:true}
       );
-      return response.data;
+      return response.data.bookmarks;
     } catch (error) {
       throw error;
     }
@@ -24,9 +25,10 @@ export const bookmarkStory = createAsyncThunk(
       const response = await apiRequestHandler(
         `${backendUrl}/user/bookmark/${id}`,
         "POST",
-        userId
+        {userId},
+        {withCredentials:true}
       );
-      return response.data;
+      return response.data.story;
     } catch (error) {
       throw error;
     }

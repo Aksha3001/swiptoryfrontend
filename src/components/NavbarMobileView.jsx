@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeAuthUser } from "../store/slices/authSlice";
@@ -11,22 +11,22 @@ import {
 } from "../assets/styled-components/global/style";
 import { StyleSheetManager } from "styled-components";
 import ModalLayout from "./ModalLayout";
-import LoginRegisterForm from "./LoginRegisterForm";
-import StoryForm from "./StoryForm";
 import hamburger from "../assets/icons/hamburger.png";
 import bookmark from "../assets/icons/bookmark.png";
 import profile from "../assets/images/profile.png";
 import close from "../assets/icons/close.png";
 import { colors } from "../assets/styled-components/global/theme";
+import { ModalContext } from "../modalcontext/ModalProvider";
 
 const NavbarMobileView = () => {
   const dispatch = useDispatch();
-  const [modalContent, setModalContent] = useState(null);
+  const {openModal,modalContent, closeModal} = useContext(ModalContext);
   const [toggleMenu, setToggleMenu] = useState(false);
   const { isAuthenticated, username } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const openModal = (content) => {
-    setModalContent(content);
+
+  const handleOpenModal = (content) => {
+    openModal(content);
   };
 
   const handleLogout = () => {
@@ -84,7 +84,7 @@ const NavbarMobileView = () => {
                       borderRadius="20px"
                       backgroundColor={colors.seemoreandregister}
                       margin="0 1rem"
-                      onClick={() => openModal("register")}
+                      onClick={() => handleOpenModal("register")}
                     >
                       Register Now
                     </Button>
@@ -94,7 +94,7 @@ const NavbarMobileView = () => {
                       fontWeight="600"
                       borderRadius="20px"
                       backgroundColor={colors.seemoreandregister}
-                      onClick={() => openModal("login")}
+                      onClick={() => handleOpenModal("login")}
                     >
                       Sign In
                     </Button>
@@ -143,7 +143,7 @@ const NavbarMobileView = () => {
                       fontWeight="600"
                       borderRadius="20px"
                       backgroundColor={colors.seemoreandregister}
-                      onClick={() => openModal("storyForm")}
+                      onClick={() => handleOpenModal("storyForm")}
                     >
                       Add Story
                     </Button>
@@ -182,12 +182,7 @@ const NavbarMobileView = () => {
         </FlexContainer>
 
         {modalContent && (
-          <ModalLayout closeModal={() => setModalContent(null)}>
-            {(modalContent === "login" || modalContent === "register") && (
-              <LoginRegisterForm formType={modalContent} />
-            )}
-            {modalContent === "storyForm" && <StoryForm />}
-          </ModalLayout>
+          <ModalLayout closeModal={closeModal}/>
         )}
       </StyledNavbar>
     </StyleSheetManager>

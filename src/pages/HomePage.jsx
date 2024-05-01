@@ -14,8 +14,8 @@ const HomePage = () => {
 
   const { userId } = useSelector((state) => state.auth);
    const [category, setCategory] = useState("All");
-  const { storiesLoading , categoryLoading, newStory, userStoriesPage, newLike} = useSelector((state) => state.story);
-  
+  const { storiesLoading , categoryLoading, newStory, userStoriesPage} = useSelector((state) => state.story);
+  const {newLike} = useSelector((state)=>state.like);
    useEffect(() => {
     if(category!=='All'){
       dispatch(getStoriesByCategory({category,page:1}));
@@ -33,7 +33,7 @@ const HomePage = () => {
     
     useEffect(() => {
       if(newLike){
-        dispatch(endRequest())
+        dispatch(endRequest());
       }
     }, [newLike]);
   

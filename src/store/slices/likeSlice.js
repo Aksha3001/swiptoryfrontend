@@ -26,7 +26,12 @@ const likeSlice = createSlice({
     newLike: false,
     storyLoading: false
   },
-  reducers: {},
+  reducers: {
+    endRequest: (state) => {
+      state.storyLoading = false;
+      state.newLike = false;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(likeStory.pending, (state) => {

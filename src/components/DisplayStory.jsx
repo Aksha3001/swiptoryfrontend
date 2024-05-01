@@ -14,8 +14,11 @@ const DisplayStory = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getStoriesByUser(userId));
-  }, []);
+    console.log({userId});
+    if(userId){
+      dispatch(getStoriesByUser({userId}));
+    }
+  }, [userId]);
 
   if (!isAuthenticated) {
     return <StyledText>Please Login to see your Stories</StyledText>;

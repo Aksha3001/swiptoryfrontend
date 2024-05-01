@@ -76,7 +76,7 @@ export const getStory = createAsyncThunk(
         const response = await apiRequestHandler(
           `${backendUrl}/story/getStoryById/${storyId}?userId=${userId}`,
           "GET",
-          {withCredentials:true}
+          {withCredentials:false}
         );
         return response.data;
     }
@@ -96,7 +96,7 @@ export const getStoriesByUser = createAsyncThunk(
         const response = await apiRequestHandler(
           `${backendUrl}/story/getAllStories?userId=${userId}&page=${userStoriesPage}`,
           "GET",
-          false
+          {withCredentials:false}
         );
         return response.data;
       } catch (error) {

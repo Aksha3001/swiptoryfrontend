@@ -17,13 +17,10 @@ function App() {
   const dispatch = useDispatch();
   const isMobile = useWindowSize();
   const { loading} = useSelector((state) => state.auth);
-  const username = localStorage.getItem('username');
 
   useEffect(() => {
-    if(username){
       dispatch(getUser());
-    }
-  }, [username]);
+  }, []);
 
   if (loading) {
     return <Loader/>;

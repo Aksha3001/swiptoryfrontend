@@ -37,11 +37,10 @@ const LoginRegisterForm = ({ formType }) => {
     if (isAuthenticated) {
       dispatch(getUser(username));
     }
-  }, [isAuthenticated,username]);
+  }, [isAuthenticated]);
 
   const onSubmit = (formData) => {
     if (formType === "login") {
-      // Handle login
         dispatch(login(formData));
         reset();  
     } else if (formType === "register") {
