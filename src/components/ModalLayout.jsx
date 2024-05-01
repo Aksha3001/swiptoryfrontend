@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 import {
   Modal,
   ModalContentContainer,
@@ -10,12 +10,13 @@ import {
   StyledText,
 } from "../assets/styled-components/global/style";
 import { colors } from "../assets/styled-components/global/theme";
-import { StyleSheetManager } from 'styled-components';
+import { StyleSheetManager } from "styled-components";
+import LoginRegisterForm from "./LoginRegisterForm";
+import EditStoryForm from "./EditStoryForm";
+import StoryForm from "./StoryForm";
 
-const ModalLayout = ({ children, closeModal }) => {
+const ModalLayout = ({ closeModal, modalContent }) => {
   const modalRef = useRef(null);
-
-  // Function to handle click outside the modal content
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       closeModal();
@@ -23,52 +24,70 @@ const ModalLayout = ({ children, closeModal }) => {
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [modalRef, closeModal]);
-  return(
-    <StyleSheetManager
-    shouldForwardProp={(prop) =>
-      ![
-        "fontSize",
-        "fontWeight",
-        "color",
-        "mobileFontSize",
-        "mobileWidth",
-        "mobileHeight",
-        "backgroundColor",
-        "borderRadius",
-        "justify",
-        "padding",
-        "align",
-        "border"
-      ].includes(prop)
+
+  const renderModalContent = () => {
+    switch (modalContent) {
+      case "login":
+        return <LoginRegisterForm formType={"login"} />;
+      case "register":
+        return <LoginRegisterForm formType={"register"} />;
+      case "storyform":
+        return <StoryForm/>;
+      case "editstory":
+        return <EditStoryForm />;
+      default:
+        return null;
     }
-  >
-    <Modal>
-      <ModalLayoutContainer ref={modalRef}>
-        <ModalContentContainer >
-          <FlexContainer  direction="row-reverse" align="center">
-            <Button
-              height="2rem"
-              width="2rem"
-              borderRadius="100%"
-              border={`2px solid ${colors.modalclose}`}
-              backgroundColor="transparent"
-              color={colors.modalclose}
-              mobileWidth="2rem"
-              mobileHeight="2rem"
-              onClick={closeModal}
-            >
-              <StyledText fontWeight="800" mobileFontSize="1.2rem">X</StyledText>
-            </Button>
-          </FlexContainer>
-          {children}
-        </ModalContentContainer>
-      </ModalLayoutContainer>
-    </Modal>
+  };
+
+  return (
+    <StyleSheetManager
+      shouldForwardProp={(prop) =>
+        ![
+          "fontSize",
+          "fontWeight",
+          "color",
+          "mobileFontSize",
+          "mobileWidth",
+          "mobileHeight",
+          "backgroundColor",
+          "borderRadius",
+          "justify",
+          "padding",
+          "align",
+          "border",
+        ].includes(prop)
+      }
+    >
+      <Modal>
+        <ModalLayoutContainer >
+          <ModalContentContainer >
+            <FlexContainer direction="row-reverse" align="center">
+              <Button
+                height="2rem"
+                width="2rem"
+                borderRadius="100%"
+                border={`2px solid ${colors.modalclose}`}
+                backgroundColor="transparent"
+                color={colors.modalclose}
+                mobileWidth="2rem"
+                mobileHeight="2rem"
+                onClick={closeModal}
+              >
+                <StyledText fontWeight="800" mobileFontSize="1.2rem">
+                  X
+                </StyledText>
+              </Button>
+            </FlexContainer>
+            {renderModalContent()}
+          </ModalContentContainer>
+        </ModalLayoutContainer>
+      </Modal>
     </StyleSheetManager>
   );
 };

@@ -13,7 +13,6 @@ import StoryModalLayout from "./components/StoryModalLayout";
 import useWindowSize from "./components/useWindowResize";
 import NavbarMobileView from "./components/NavbarMobileView";
 
-
 function App() {
   const dispatch = useDispatch();
   const isMobile = useWindowSize();

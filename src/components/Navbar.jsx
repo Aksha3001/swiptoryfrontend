@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ModalLayout from "./ModalLayout";
 import { DropDownMenu, StyledNavbar } from "../assets/styled-components/Navbar";
-import LoginRegisterForm from "./LoginRegisterForm";
 import {
   Button,
   FlexContainer,
@@ -16,17 +15,20 @@ import { StyleSheetManager } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeAuthUser } from "../store/slices/authSlice";
-import StoryForm from "./StoryForm";
-
+import { ModalContext } from '../modalcontext/ModalProvider';
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const [modalContent, setModalContent] = useState(null);
+  const {openModal,closeModal,modalContent} = useContext(ModalContext);
   const [toggleMenu, setToggleMenu] = useState(false);
   const { isAuthenticated, username } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const openModal = (content) => {
-    setModalContent(content);
+  useEffect(()=>{
+
+  },[modalContent]);
+
+  const handleOpenModal = (content) => {
+    openModal(content);
   };
 
   const handleLogout = () => {
@@ -71,7 +73,7 @@ const Navbar = () => {
                 borderRadius="20px"
                 backgroundColor={colors.seemoreandregister}
                 margin="0 1rem"
-                onClick={() => openModal("register")}
+                onClick={()=>handleOpenModal("register")}
               >
                 Register Now
               </Button>
@@ -81,7 +83,7 @@ const Navbar = () => {
                 fontWeight="600"
                 borderRadius="20px"
                 backgroundColor={colors.loginregisterbutton}
-                onClick={() => openModal("login")}
+                onClick={() => handleOpenModal("login")}
               >
                 Sign In
               </Button>
@@ -107,7 +109,7 @@ const Navbar = () => {
                fontWeight="600"
                borderRadius="20px"
                backgroundColor={colors.seemoreandregister}
-               onClick={() =>openModal('storyForm')}
+               onClick={()=>handleOpenModal('storyform')}
               >
                 Add Story
               </Button>
@@ -141,16 +143,10 @@ const Navbar = () => {
             </FlexContainer>
           )}
         </FlexContainer>
-
-        {modalContent && (
-          <ModalLayout closeModal={() => setModalContent(null)}>
-            {(modalContent === "login" || modalContent === "register") && (
-              <LoginRegisterForm formType={modalContent} />
-            )}
-            {modalContent === "storyForm" && <StoryForm />}
-          </ModalLayout>
-        )}
       </StyledNavbar>
+      {modalContent && (
+        <ModalLayout closeModal={closeModal} modalContent={modalContent}/>
+      )}
     </StyleSheetManager>
   );
 };

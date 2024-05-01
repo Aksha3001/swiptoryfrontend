@@ -88,24 +88,15 @@ const StoryModal = () => {
               />
             </svg>
           </div>
-          {/* -------------------------- SHARE ICON ------------------------------------- */}
-
           <div onClick={handleShareStory}>
             <Image src={shareIcon} alt="share" />
           </div>
           
           </InlineFlex>
         </StoryButtons>
-
-        {/* ------------------------------------------- | STORY IMAGE SLIDER | ------------------------------------------- */}
-
         <StorySlides slides={story && story.slides} />
-
-        {/* -------------------------------------------------------------------------------------------------------------- */}
-
         <BottomStoryButtons>
           <InlineFlex>
-          {/* --------------------------BOOKMARK ICON -------------------------- */}
           <div>
             <svg
               onClick={() => handleBookmark()}
@@ -139,7 +130,7 @@ const StoryModal = () => {
               />
             </svg>
             <StyledText>
-              {story && console.log(story.likes.length)}
+              {story && console.log('')}
               {totalLikes + (newLike ? 1 : 0)}
             </StyledText>
           </FlexContainer>

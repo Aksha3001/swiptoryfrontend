@@ -16,10 +16,10 @@ const SlidesformFields = ({ slide, slideIndex, handleChange }) => {
   return (
     <FlexContainer direction="column" justify="center" align="center" gap="1rem">
       <FormContainer>
-        <FormField label="Heading:" name="heading" value={slide.heading} placeholder="Your Heading" handleInputChange={handleInputChange} />
-        <FormField label="Description:" type="textarea" name="description" value={slide.description} placeholder="Story Description" handleInputChange={handleInputChange} />
-        <FormField label="Image URL:" name="imageUrl" value={slide.imageUrl} placeholder="Add Image URL" handleInputChange={handleInputChange} />
-        <FormFieldSelect label="Category:" name="category" value={slide.category} options={categories} handleInputChange={handleInputChange} />
+        <FormField label="Heading:" name="heading" value={slide.heading || ''} placeholder="Your Heading" handleInputChange={handleInputChange} />
+        <FormField label="Description:" type="textarea" name="description" value={slide.description || ''} placeholder="Story Description" handleInputChange={handleInputChange} />
+        <FormField label="Image URL:" name="imageUrl" value={slide.imageUrl || ''} placeholder="Add Image URL" handleInputChange={handleInputChange} />
+        <FormFieldSelect label="Category:" name="category" value={slide.category || ''} options={categories} handleInputChange={handleInputChange} />
       </FormContainer>
     </FlexContainer>
   );
@@ -54,7 +54,7 @@ const FormFieldSelect = ({ label, name, value, options,handleInputChange }) => (
   <GridLayout>
     <StyledText fontWeight="600">{label}</StyledText>
     <SelectField name={name} value={value} onChange={(e)=>handleInputChange(e)} style={{color: value && "black"}}>
-      <option value="">Select Category</option>
+      <option value={""}>{value?value.charAt(0).toUpperCase() + value.slice(1):"Select Category"}</option>
       {options.map((category) => (
         <option key={category} value={category} style={{color:"black"}}>
           {category}

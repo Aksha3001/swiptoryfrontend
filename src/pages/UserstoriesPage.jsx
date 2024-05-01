@@ -1,10 +1,10 @@
 import React from 'react'
-import Stories from '../components/Stories';
+import DisplayStory from '../components/DisplayStory';
 
 const UserstoriesPage = () => {
   return (
     <div>
-       <Stories/>
+       <DisplayStory/>
     </div>
   )
 }
