@@ -119,7 +119,7 @@ const StoryModal = () => {
               </svg>
             </div>
             <div onClick={handleShareStory}>
-              <Image src={shareIcon} alt="share" />
+              <Image  src={shareIcon} alt="share" />
             </div>
           </InlineFlex>
         </StoryButtons>

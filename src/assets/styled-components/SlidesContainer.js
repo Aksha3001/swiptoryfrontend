@@ -5,6 +5,10 @@ export const SlideContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width:768px){
+    width:100vw;
+    height:100vh;
+  }
 `;
 
 export const Buttons = styled.div`
@@ -16,6 +20,11 @@ export const Buttons = styled.div`
   align-items: center;
   width: 50vw;
   left: -50%;
+  @media screen and (max-width:768px){
+    width:100vw;
+    left:0;
+    top:260px;
+  }
 `;
 
 export const PrevButton = styled.button`
@@ -33,4 +42,8 @@ export const PrevButton = styled.button`
   cursor: pointer;
   margin: 1rem;
   padding: 2rem;
+
+  @media screen and (max-width:768px){
+
+  }
 `;

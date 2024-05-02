@@ -12,6 +12,8 @@ const Slide = ({ slides, imgIndex }) => {
         <Image 
           width="100%"
           height="80vh"
+          mobileImageWidth="100vw" 
+          mobileImageHeight="100vh"
           // style={{ display: index === imgIndex ? "block" : "none"}}
           src={slide?.imageUrl}
           alt={`Slide ${index}`}

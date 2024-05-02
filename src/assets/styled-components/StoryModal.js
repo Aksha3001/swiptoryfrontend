@@ -11,6 +11,9 @@ export const StoryModalContainer = styled.div`
   align-items: center;
   color: #ffff;
   z-index: 2;
+  @media screen and (max-width:768px){
+    height:100%;
+  }
 `;
 
 export const ViewStory = styled.div`
@@ -20,6 +23,10 @@ export const ViewStory = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width:768px){
+    width: 100%;
+    height:100%;
+  }
 `;
 
 export const InlineFlex = styled.div`
@@ -27,6 +34,11 @@ export const InlineFlex = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 80%;
+  @media screen and (max-width:768px){
+    width: 90vw;
+    height:10vh;
+    
+  }
 `;
 
 export const StoryButtons = styled.div`
@@ -35,6 +47,10 @@ export const StoryButtons = styled.div`
   top: 2.2rem;
   padding: 0.5rem;
   background: linear-gradient(180deg, #000000, transparent);
+  @media screen and (max-width:768px){
+    width: 99vw;
+    top:2.5rem;
+  }
 `;
 
 export const BottomStoryButtons = styled.div`
@@ -44,4 +60,11 @@ export const BottomStoryButtons = styled.div`
   padding: 0.5rem;
   height: 10%;
   background: linear-gradient(360deg, #000000, transparent);
+
+  @media screen and (max-width:768px){
+    width: 100vw;
+    padding: 1.5rem;
+    bottom: auto;
+    background: linear-gradient(360deg, #000000, transparent);
+  }
 `;

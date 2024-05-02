@@ -1,16 +1,15 @@
 import React from 'react'
-import { Modal } from '../assets/styled-components/Modal'
-import { StoryModalContainer, StoryModalContentContainer } from '../assets/styled-components/StoryModalContainer'
+import { StoryModalContainer, StoryModalContentContainer, StyledModal } from '../assets/styled-components/StoryModalContainer'
 
 const StoryModalLayout = ({children}) => {
   return (
-    <Modal>
+    <StyledModal>
       <StoryModalContainer>
         <StoryModalContentContainer>
         {children}
         </StoryModalContentContainer>
       </StoryModalContainer>
-    </Modal>
+    </StyledModal>
   )
 }
 
