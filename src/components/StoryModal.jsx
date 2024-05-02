@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   BottomStoryButtons,
   InlineFlex,
+  InlineFlexBottom,
   StoryButtons,
   StoryModalContainer,
   ViewStory,
@@ -125,7 +126,7 @@ const StoryModal = () => {
         </StoryButtons>
         <StorySlides slides={story && story.slides} />
         <BottomStoryButtons>
-          <InlineFlex>
+          <InlineFlexBottom>
             <div>
               <svg
                 onClick={() => handleBookmark()}
@@ -163,7 +164,7 @@ const StoryModal = () => {
                 {totalLikes + (newLike ? 1 : 0)}
               </StyledText>
             </FlexContainer>
-          </InlineFlex>
+          </InlineFlexBottom>
         </BottomStoryButtons>
       </ViewStory>
     </StoryModalContainer>

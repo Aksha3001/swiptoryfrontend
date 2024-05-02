@@ -18,7 +18,7 @@ export const SlideText = styled.div`
 
   @media screen and (max-width:768px){
     width: 90vw;
-    top:405px;
+    top:410px;
     font-size:14px;
     padding:0 0.5rem;
     margin-left:1.5rem;

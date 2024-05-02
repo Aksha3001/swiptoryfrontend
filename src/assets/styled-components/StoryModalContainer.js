@@ -10,8 +10,9 @@ export const StyledModal = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 
   @media screen and (max-width:768px){
-    height:100%;
-    width:100%;
+    height:0%;
+    width:0%;
+    position: none;
   }
 `;
 
@@ -34,10 +35,11 @@ export const StoryModalContainer = styled.div`
   @media screen and (max-width: 768px) {
     width:0vw;
     height:0vh;
-    top:0%;
-    left:0%;
-    padding: 0.5rem;
+    top:0;
+    left:0;
+    padding: 0rem;
     display:block;
+    transform: none;
   }
 `;
 
