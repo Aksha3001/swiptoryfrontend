@@ -40,6 +40,7 @@ function App() {
         />
         <Route path="/bookmarks" element={<BookmarkPage />} />
         <Route path="/my/stories" element={<UserstoriesPage />} />
+        <Route path="*" element={<HomePage/>}/>
       </Routes>
     </>
   );
