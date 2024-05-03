@@ -47,11 +47,11 @@ const Stories = ({ category }) => {
     if (newStory) {
       dispatch(getStories(page));
     }
-  }, [newStory, page]);
+  }, [newStory, page, stories]);
 
   useEffect(() => {
     if (isAuthenticated && !userStories && userId) {
-      dispatch(getStoriesByUser(userId, userStoriesPage));
+      dispatch(getStoriesByUser({userId, userStoriesPage}));
     }
   }, [isAuthenticated, userId, userStories, userStoriesPage]);
 
@@ -67,7 +67,7 @@ const Stories = ({ category }) => {
             )
           )}
       </StoriesContainer>
-      {storyArray && storyArray.length > 4 && (
+      {storyArray && storyArray.length > 0 && (
         <div
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
@@ -85,7 +85,7 @@ const Stories = ({ category }) => {
         </StyledText>
       )}
       {renderStories(userStories, false, () =>
-        dispatch(getStoriesByUser(userId, userStoriesPage + 1))
+        dispatch(getStoriesByUser({userId, userStoriesPage:userStoriesPage + 1}))
       )}
     </>
   );
@@ -93,6 +93,7 @@ const Stories = ({ category }) => {
     <Container>
       {category === "All" && (
         <>
+            {console.log({userStories})}
           {isAuthenticated && renderUserStories()}
           <>
             {Object.keys(stories).map(

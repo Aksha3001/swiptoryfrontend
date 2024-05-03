@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useWindowSize from "./useWindowResize";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,12 +10,14 @@ import {
   ButtonsContainer,
   SlideBox,
 } from "../assets/styled-components/StoryForm";
-import { createStory } from "../store/slices/storySlice";
+import { createStory, getStories } from "../store/slices/storySlice";
 import { colors } from "../assets/styled-components/global/theme";
 import SlidesformFields from "./SlidesformFields";
+import { ModalContext } from "../modalcontext/ModalProvider";
 
 const StoryForm = () => {
   const dispatch = useDispatch();
+  const {closeModal} = useContext(ModalContext);
   const { user } = useSelector((state) => state.auth);
   const isMobile = useWindowSize();
   const initialSlide = {
@@ -87,7 +89,7 @@ const StoryForm = () => {
         slide.heading?.trim() === "" ||
         slide.description?.trim() === "" ||
         slide.imageUrl?.trim() === "" ||
-        slide.category?.trim() === ""
+        slide.category?.trim() === "" 
       ) {
         setError(slide, index);
       }
@@ -113,6 +115,8 @@ const StoryForm = () => {
     }
     const values = { slides, addedBy: user };
     dispatch(createStory(values));
+    closeModal();
+    dispatch(getStories());
   };
 
   const handleAddSlide = () => {
