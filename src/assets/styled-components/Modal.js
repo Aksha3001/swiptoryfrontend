@@ -7,7 +7,7 @@ export const Modal = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20));
 
   @media screen and (max-width:768px){
     height:100vh;
