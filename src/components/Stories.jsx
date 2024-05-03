@@ -71,7 +71,7 @@ const Stories = ({ category }) => {
         <div
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
-          <Button width="100px" height="2rem" backgroundColor={colors.seemoreandregister} borderRadius="10px" fontWeight="600" onClick={pageFunction} >See more...</Button>
+          <Button width="100px" height="2rem" backgroundColor={colors.seemoreandregister} borderRadius="10px" fontWeight="600" onClick={pageFunction} >See more</Button>
         </div>
       )}
     </div>
@@ -93,7 +93,6 @@ const Stories = ({ category }) => {
     <Container>
       {category === "All" && (
         <>
-            {console.log({userStories})}
           {isAuthenticated && renderUserStories()}
           <>
             {Object.keys(stories).map(
@@ -107,7 +106,7 @@ const Stories = ({ category }) => {
                       Object.keys(catLimit).forEach((cat) => {
                         if (cat === key) {
                           catLimit[cat] = catLimit[cat] + 4;
-                          dispatch(getStories(page + 1, catLimit[cat], cat));
+                          dispatch(getStories({page:page + 1, catLimit:catLimit[cat],cat}));
                         }
                       })
                     )}
@@ -124,7 +123,7 @@ const Stories = ({ category }) => {
             Top Stories About {category}
           </StyledText>
           {renderStories(categoryStories, categoryLoading, () =>
-            dispatch(getStoriesByCategory(category, page + 1))
+            dispatch(getStoriesByCategory({category,page:page + 1}))
           )}
           {categoryStories.length <= 0 && (
             <StyledText fontSize="18px" fontWeight="500">No stories found!</StyledText>
