@@ -23,6 +23,7 @@ import { likeStory } from "../store/slices/likeSlice";
 import { bookmarkStory } from "../store/slices/bookmarkSlice";
 import { toast } from "react-toastify";
 import { StyleSheetManager } from "styled-components";
+import { toastHandler } from "../store/slices/apiUtils";
 
 const StoryModal = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const StoryModal = () => {
   const handleLike = () => {
     if (!isAuthenticated) {
       navigate("/");
+      toastHandler("Please login to like a story","error");
     } else {
       dispatch(likeStory({ id, userId }));
     }
@@ -58,6 +60,7 @@ const StoryModal = () => {
   const handleBookmark = () => {
     if (!isAuthenticated) {
       navigate("/");
+      toastHandler("Please login to bookmark a story","error");
     } else {
       dispatch(bookmarkStory({ id, userId }));
     }
