@@ -67,7 +67,7 @@ const Stories = ({ category }) => {
             )
           )}
       </StoriesContainer>
-      {storyArray && storyArray.length > 0 && (
+      {storyArray && storyArray.length > 3 && (
         <div
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
