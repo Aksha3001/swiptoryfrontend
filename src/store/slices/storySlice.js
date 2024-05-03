@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { apiRequestHandler } from "./apiUtils";
+import { apiRequestHandler, toastHandler } from "./apiUtils";
 import { backendUrl } from "../../axios/axiosInstance";
 
 export const createStory = createAsyncThunk("story/add", async (values) => {
@@ -10,7 +10,7 @@ export const createStory = createAsyncThunk("story/add", async (values) => {
       values,
       {withCredentials:true}
     );
-    toast.success("Story created successfully","success");
+    toastHandler("Story created successfully","success");
     return response.data;
   } catch (error) {
     throw error;
@@ -27,7 +27,7 @@ export const updateStory = createAsyncThunk("story/update", async ({ slides,
       addedBy},
       {withCredentials:true}
     );
-    toast.success("Story updated successfully","success");
+    toastHandler("Story updated successfully","success");
     return response.data;
   } catch (error) {
     throw error;
