@@ -131,7 +131,6 @@ const EditStoryForm = () => {
           align="center"
           gap="1rem"
         >
-          {console.log(isMobile)}
           {slides.map((slide, index) => (
             <SlideBox
               key={index}

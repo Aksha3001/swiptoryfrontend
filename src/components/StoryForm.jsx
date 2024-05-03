@@ -18,7 +18,6 @@ const StoryForm = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const isMobile = useWindowSize();
-  console.log(isMobile);
   const initialSlide = {
     heading: "",
     description: "",
@@ -155,7 +154,6 @@ const StoryForm = () => {
           align="center"
           gap="1rem"
         >
-          {console.log(isMobile)}
           {slides.map((slide, index) => (
             <SlideBox
               key={index}
