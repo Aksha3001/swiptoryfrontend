@@ -11,7 +11,6 @@ export const StoryContainer = styled.div`
   width: 300px;
   height: 380px;
   border-radius: 1rem;
-  
 `;
 
 export const StoryDescription = styled.div`

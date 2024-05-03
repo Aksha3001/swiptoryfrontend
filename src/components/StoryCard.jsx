@@ -72,8 +72,6 @@ const StoryCard = ({ story }) => {
             </StyledText>
           </StoryDescription>
         </StoryContainer>
-
-        {/* Render edit button if user is authenticated and owns the story */}
         {isAuthenticated && userId && story.addedBy === userId && (
           <StoryEditContainer
             onClick={handleEditStory}

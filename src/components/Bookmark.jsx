@@ -9,6 +9,8 @@ import {
 import { getBookmarks } from "../store/slices/bookmarkSlice";
 import StoryCard from "./StoryCard";
 import useWindowSize from "./useWindowResize";
+import { GridLayout } from "../assets/styled-components/SlidesformFields";
+import { StoriesContainer } from "../assets/styled-components/StoriesContainer";
 
 const Bookmark = () => {
   const isMobile = useWindowSize();
@@ -41,7 +43,7 @@ const Bookmark = () => {
       <StyledText fontSize="22px" fontWeight="600">
         Your Bookmarks
       </StyledText>
-      <FlexContainer direction={isMobile?"column":"row"} justify="center" align="center">
+      <StoriesContainer>
         {bookmarks?.map((bookmark, index) => (
           <StoryCard story={bookmark} key={bookmark._id} />
         ))}
@@ -60,7 +62,7 @@ const Bookmark = () => {
               </Button>
             </div>
           ))}
-      </FlexContainer>
+      </StoriesContainer>
     </div>
   );
 };
