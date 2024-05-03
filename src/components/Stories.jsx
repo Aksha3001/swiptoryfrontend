@@ -36,7 +36,7 @@ const Stories = ({ category }) => {
 
   useEffect(() => {
     if (!stories && category === "All") {
-      dispatch(getStories(page));
+      dispatch(getStories({page}));
     }
     if (!stories && category !== "All") {
       dispatch(getStoriesByCategory({category,page}));
@@ -45,7 +45,7 @@ const Stories = ({ category }) => {
 
   useEffect(() => {
     if (newStory) {
-      dispatch(getStories(page));
+      dispatch(getStories({page}));
     }
   }, [newStory, page, stories]);
 
