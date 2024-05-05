@@ -14,11 +14,10 @@ import { createStory, getStories } from "../store/slices/storySlice";
 import { colors } from "../assets/styled-components/global/theme";
 import SlidesformFields from "./SlidesformFields";
 import { ModalContext } from "../modalcontext/ModalProvider";
-import { toastHandler } from "../store/slices/apiUtils";
 
 const StoryForm = () => {
   const dispatch = useDispatch();
-  const {closeModal} = useContext(ModalContext);
+  const { closeModal } = useContext(ModalContext);
   const { user } = useSelector((state) => state.auth);
   const isMobile = useWindowSize();
   const initialSlide = {
@@ -80,8 +79,8 @@ const StoryForm = () => {
     handleValidate(name, value);
     const updatedSlides = [...slides];
     updatedSlides[index] = { ...updatedSlides[index], [name]: value };
+    setSlides(updatedSlides);
 
-    // Check if changing category on subsequent slides
     if (index > 0 && name === "category") {
       const firstCategory = updatedSlides[0].category;
       if (value !== firstCategory) {
@@ -100,7 +99,7 @@ const StoryForm = () => {
         slide.heading?.trim() === "" ||
         slide.description?.trim() === "" ||
         slide.imageUrl?.trim() === "" ||
-        slide.category?.trim() === "" 
+        slide.category?.trim() === ""
       ) {
         setError(slide, index);
       }
@@ -113,13 +112,16 @@ const StoryForm = () => {
       );
     });
 
-      // Check if all slides have the same category
-      if (index > 0 && slide.category !== slides[0].category) {
-        setError("Please select the same category for all slides");
-        toastHandler("Please select the same category for all slides","error");
-      }
+    const firstCategory = slides[0].category;
+    const hasDifferentCategory = slides.some(
+      (slide) => slide.category !== firstCategory
+    );
 
-
+    if (hasDifferentCategory) {
+      setError("Please select the same category for all slides");
+      return;
+    }
+    
     if (isValid) {
       setError("Please fill out all fields");
       return;
@@ -252,54 +254,56 @@ const StoryForm = () => {
           </ButtonsContainer>
         )}
       </FlexContainer>
-      { isMobile && <ButtonsContainer>
-            <FlexContainer  justify="space-between" align="center">
-              <FlexContainer gap="0.5rem">
-                <Button
-                width="60px"
-                height="2rem"
-                borderRadius="10px"
-                mobileFontSize="14px"
-                  backgroundColor={colors.previous}
-                  onClick={handlePrevClick}
-                >
-                  Previous
-                </Button>
-                <Button
-                width="60px"
-                height="2rem"
-                borderRadius="10px"
-                mobileFontSize="14px"
-                  backgroundColor={colors.next}
-                  onClick={handleNextClick}
-                >
-                  Next
-                </Button>
-                {slides.length > 3 && (
-                  <Button
-                  width="60px"
-                  height="2rem"
-                  borderRadius="10px"
-                  mobileFontSize="14px"
-                    backgroundColor={colors.remove}
-                    onClick={() => handleRemoveSlide(currentSlide)}
-                  >
-                    Remove
-                  </Button>
-                )}
-              </FlexContainer>
+      {isMobile && (
+        <ButtonsContainer>
+          <FlexContainer justify="space-between" align="center">
+            <FlexContainer gap="0.5rem">
               <Button
                 width="60px"
                 height="2rem"
                 borderRadius="10px"
                 mobileFontSize="14px"
-                backgroundColor={colors.seemoreandregister}
-                onClick={handleSubmit}
+                backgroundColor={colors.previous}
+                onClick={handlePrevClick}
               >
-                Post
+                Previous
               </Button>
+              <Button
+                width="60px"
+                height="2rem"
+                borderRadius="10px"
+                mobileFontSize="14px"
+                backgroundColor={colors.next}
+                onClick={handleNextClick}
+              >
+                Next
+              </Button>
+              {slides.length > 3 && (
+                <Button
+                  width="60px"
+                  height="2rem"
+                  borderRadius="10px"
+                  mobileFontSize="14px"
+                  backgroundColor={colors.remove}
+                  onClick={() => handleRemoveSlide(currentSlide)}
+                >
+                  Remove
+                </Button>
+              )}
             </FlexContainer>
-          </ButtonsContainer>}
+            <Button
+              width="60px"
+              height="2rem"
+              borderRadius="10px"
+              mobileFontSize="14px"
+              backgroundColor={colors.seemoreandregister}
+              onClick={handleSubmit}
+            >
+              Post
+            </Button>
+          </FlexContainer>
+        </ButtonsContainer>
+      )}
     </FlexContainer>
   );
 };
