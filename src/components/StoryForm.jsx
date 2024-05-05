@@ -14,6 +14,7 @@ import { createStory, getStories } from "../store/slices/storySlice";
 import { colors } from "../assets/styled-components/global/theme";
 import SlidesformFields from "./SlidesformFields";
 import { ModalContext } from "../modalcontext/ModalProvider";
+import { toastHandler } from "../store/slices/apiUtils";
 
 const StoryForm = () => {
   const dispatch = useDispatch();
@@ -79,6 +80,16 @@ const StoryForm = () => {
     handleValidate(name, value);
     const updatedSlides = [...slides];
     updatedSlides[index] = { ...updatedSlides[index], [name]: value };
+
+    // Check if changing category on subsequent slides
+    if (index > 0 && name === "category") {
+      const firstCategory = updatedSlides[0].category;
+      if (value !== firstCategory) {
+        setError("Please select the same category for all slides");
+        return;
+      }
+    }
+
     setSlides(updatedSlides);
   };
 
@@ -101,6 +112,13 @@ const StoryForm = () => {
         slide.category?.trim() === ""
       );
     });
+
+      // Check if all slides have the same category
+      if (index > 0 && slide.category !== slides[0].category) {
+        setError("Please select the same category for all slides");
+        toastHandler("Please select the same category for all slides","error");
+      }
+
 
     if (isValid) {
       setError("Please fill out all fields");

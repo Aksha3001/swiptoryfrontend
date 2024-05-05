@@ -27,7 +27,6 @@ const SlidesformFields = ({ slide, slideIndex, handleChange }) => {
   );
 };
 
-// Reusable form field component
 const FormField = ({ isMobile,label, type, name, value, placeholder, handleInputChange }) => (
   <GridLayout>
     <StyledText fontSize={isMobile && "14px"} fontWeight="600">{label}</StyledText>
@@ -37,7 +36,7 @@ const FormField = ({ isMobile,label, type, name, value, placeholder, handleInput
           value={value}
           placeholder={placeholder}
           onChange={handleInputChange}
-          rows={4} // Adjust the number of rows as needed
+          rows={4} 
         />
       ) : (
         <InputField
@@ -51,7 +50,6 @@ const FormField = ({ isMobile,label, type, name, value, placeholder, handleInput
   </GridLayout>
 );
 
-// Reusable select form field component
 const FormFieldSelect = ({ isMobile,label, name, value, options,handleInputChange }) => (
   <GridLayout>
     <StyledText fontSize={isMobile && "14px"} fontWeight="600">{label}</StyledText>
