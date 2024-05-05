@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useWindowSize from "./useWindowResize";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,14 +10,16 @@ import {
   ButtonsContainer,
   SlideBox,
 } from "../assets/styled-components/StoryForm";
-import { updateStory } from "../store/slices/storySlice";
 import { colors } from "../assets/styled-components/global/theme";
 import SlidesformFields from "./SlidesformFields";
 import Loader from "./Loader";
+import { ModalContext } from "../modalcontext/ModalProvider";
+import { updateStory } from "../store/slices/storySlice";
 
 const EditStoryForm = () => {
   const dispatch = useDispatch();
   const { username } = useSelector((state) => state.auth);
+  const { closeModal } = useContext(ModalContext);
   const { story, storyLoading } = useSelector((state) => state.story);
   const initialSlide = story?.slides ? story.slides : [{}, {}, {}];
   const [slides, setSlides] = useState(initialSlide);
@@ -85,8 +87,8 @@ const EditStoryForm = () => {
       setError("Please remove slides");
       return;
     }
-    const values = { slides, addedBy: username };
-    await dispatch(updateStory(values));
+    dispatch(updateStory({story,slides,addedBy:username}));
+    closeModal();
   };
 
   const handleAddSlide = () => {
@@ -146,7 +148,7 @@ const EditStoryForm = () => {
         </FlexContainer>
         <div>
           {slides.map((slide, slideIndex) => (
-            <>
+            <div key={slideIndex}>
               {slideIndex === currentSlide && (
                 <SlidesformFields
                   key={slideIndex}
@@ -156,7 +158,7 @@ const EditStoryForm = () => {
                   handleRemoveSlide={() => handleRemoveSlide(slideIndex)}
                 />
               )}
-            </>
+            </div>
           ))}
         </div>
         <StyledText color="red">{error}</StyledText>
@@ -201,7 +203,7 @@ const EditStoryForm = () => {
                 backgroundColor={colors.seemoreandregister}
                 onClick={handleSubmit}
               >
-                Post
+                Update
               </Button>
             </FlexContainer>
           </ButtonsContainer>

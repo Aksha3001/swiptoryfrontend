@@ -17,7 +17,7 @@ export const createStory = createAsyncThunk("story/add", async (values) => {
   }
 });
 
-export const updateStory = createAsyncThunk("story/update", async ({ slides,
+export const updateStory = createAsyncThunk("story/update", async ({story, slides,
     addedBy}) => {
   try {
     const response = await apiRequestHandler(
