@@ -38,6 +38,7 @@ const LoginRegisterForm = ({ formType }) => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUser(username));
+      closeModal();
     }
   }, [isAuthenticated]);
 
@@ -45,11 +46,9 @@ const LoginRegisterForm = ({ formType }) => {
     if (formType === "login") {
         dispatch(login(formData));
         reset();  
-        closeModal();
     } else if (formType === "register") {
         dispatch(register(formData));
         reset();
-        closeModal();
     }
   };
 
