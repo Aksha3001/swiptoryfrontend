@@ -16,11 +16,13 @@ import NavbarMobileView from "./components/NavbarMobileView";
 function App() {
   const dispatch = useDispatch();
   const isMobile = useWindowSize();
-  const { loading} = useSelector((state) => state.auth);
+  const {isAuthenticated,loading} = useSelector((state) => state.auth);
 
   useEffect(() => {
+    if(isAuthenticated){
       dispatch(getUser());
-  }, []);
+    }
+  }, [isAuthenticated]);
 
   if (loading) {
     return <Loader/>;
