@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Button,
@@ -17,9 +17,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser, login, register } from "../store/slices/authSlice";
 import Eyeopen from "../assets/icons/eyeopen.png";
 import Eyeclose from "../assets/icons/closedeye.png";
+import { ModalContext } from "../modalcontext/ModalProvider";
 
 const LoginRegisterForm = ({ formType }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const {closeModal} = useContext(ModalContext);
   const { isAuthenticated, username } = useSelector(
     (state) => state.auth
   );
@@ -43,9 +45,11 @@ const LoginRegisterForm = ({ formType }) => {
     if (formType === "login") {
         dispatch(login(formData));
         reset();  
+        closeModal();
     } else if (formType === "register") {
         dispatch(register(formData));
         reset();
+        closeModal();
     }
   };
 
