@@ -14,15 +14,8 @@ import useWindowSize from "./components/useWindowResize";
 import NavbarMobileView from "./components/NavbarMobileView";
 
 function App() {
-  const dispatch = useDispatch();
   const isMobile = useWindowSize();
-  const {isAuthenticated,loading} = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if(isAuthenticated){
-      dispatch(getUser());
-    }
-  }, [isAuthenticated]);
+  const {loading} = useSelector((state) => state.auth);
 
   if (loading) {
     return <Loader/>;

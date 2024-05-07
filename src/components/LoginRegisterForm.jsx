@@ -33,6 +33,12 @@ const LoginRegisterForm = ({ formType }) => {
   } = useForm();
   const formData = watch();
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getUser(username));
+    }
+  }, [isAuthenticated]);
+
   const onSubmit = (formData) => {
     if (formType === "login") {
         dispatch(login(formData));
