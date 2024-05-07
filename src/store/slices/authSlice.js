@@ -38,7 +38,7 @@ export const login = createAsyncThunk("authLogin", async (credentials) => {
 export const getUser = createAsyncThunk("getUser", async () => {
   const username = localStorage.getItem("username");
   try {
-    const response = await apiRequestHandler(`${backendUrl}/user/getUser/${username}`,'GET',{withCredentials:false});
+    const response = await apiRequestHandler(`${backendUrl}/user/getUser/${username}`,'GET',{withCredentials:true});
     return response.data;
   } catch (error) {
     throw error;
